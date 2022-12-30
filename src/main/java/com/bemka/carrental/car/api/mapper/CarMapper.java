@@ -14,6 +14,10 @@ import java.util.Locale;
 @Mapper
 public abstract class CarMapper {
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "externalId", ignore = true)
+    @Mapping(target = "isActive", ignore = true)
+    @Mapping(target = "rentPrices", ignore = true)
     @Mapping(source = "brand", target = "brand", qualifiedByName = "toCarBrand")
     public abstract Car asEntity(CreateCarDto createCarDto);
 
