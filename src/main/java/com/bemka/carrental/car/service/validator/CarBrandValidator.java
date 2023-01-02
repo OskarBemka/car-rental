@@ -9,7 +9,8 @@ import java.util.stream.Stream;
 public class CarBrandValidator implements ConstraintValidator<CarBrandType, String> {
 
     @Override
-    public void initialize(CarBrandType carBrandType) {
+    public void initialize(CarBrandType constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override

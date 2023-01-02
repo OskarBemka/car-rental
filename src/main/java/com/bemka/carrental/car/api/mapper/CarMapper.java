@@ -1,6 +1,6 @@
 package com.bemka.carrental.car.api.mapper;
 
-import com.bemka.carrental.car.api.dto.CreateCarDto;
+import com.bemka.carrental.car.api.dto.CarDto;
 import com.bemka.carrental.car.model.Car;
 import com.bemka.carrental.car.model.CarBrand;
 import org.mapstruct.Mapper;
@@ -19,10 +19,12 @@ public abstract class CarMapper {
     @Mapping(target = "isActive", ignore = true)
     @Mapping(target = "rentPrices", ignore = true)
     @Mapping(source = "brand", target = "brand", qualifiedByName = "toCarBrand")
-    public abstract Car asEntity(CreateCarDto createCarDto);
+    public abstract Car asEntity(CarDto carDto);
+
+    public abstract CarDto asDto(Car car);
 
     @Named("toCarBrand")
-    public CarBrand toCarBrand(String brand) {
+    protected CarBrand toCarBrand(String brand) {
         if (brand == null) {
             return null;
         }

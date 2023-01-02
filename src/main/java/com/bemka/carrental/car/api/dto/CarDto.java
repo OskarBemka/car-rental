@@ -4,7 +4,7 @@ import com.bemka.carrental.car.service.validator.CarBrandType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record CreateCarDto(
+public record CarDto(
         @CarBrandType
         String brand,
         @NotBlank(message = "Car model have to contain non-whitespace characters!")
