@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 public class DayOfWeekValidator implements ConstraintValidator<DayOfWeekType, String> {
     @Override
     public void initialize(DayOfWeekType constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override

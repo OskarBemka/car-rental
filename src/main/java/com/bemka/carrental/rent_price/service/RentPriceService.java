@@ -1,10 +1,11 @@
 package com.bemka.carrental.rent_price.service;
 
-import com.bemka.carrental.car.model.dao.CarRepository;
+import com.bemka.carrental.car.service.CarService;
 import com.bemka.carrental.common.exception.BadRequestException;
 import com.bemka.carrental.common.exception.NotFoundException;
 import com.bemka.carrental.rent_price.api.dto.RentPriceDto;
 import com.bemka.carrental.rent_price.api.mapper.RentPriceMapper;
+import com.bemka.carrental.rent_price.model.RentPrice;
 import com.bemka.carrental.rent_price.model.dao.RentPriceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,11 @@ import java.util.stream.Collectors;
 public class RentPriceService {
 
     private final RentPriceRepository rentPriceRepository;
-    private final CarRepository carRepository;
+    private final CarService carService;
     private final RentPriceMapper rentPriceMapper;
 
     public String addRentPrice(String carExternalId, RentPriceDto rentPriceDto) {
-        final var car = carRepository.findByExternalId(carExternalId)
-                .orElseThrow(() -> new NotFoundException(String.format("The car with id %s not found!", carExternalId)));
+        final var car = carService.getCar(carExternalId);
 
         final var dayOfWeek = DayOfWeek.valueOf(rentPriceDto.dayOfWeek().toUpperCase(Locale.ROOT));
 
@@ -38,16 +38,21 @@ public class RentPriceService {
     }
 
     public List<RentPriceDto> getRentPricesForCar(String carExternalId) {
-        final var car = carRepository.findByExternalId(carExternalId)
-                .orElseThrow(() -> new NotFoundException(String.format("The car with id %s not found!", carExternalId)));
-        return rentPriceRepository.getRentPricesByCar(car).stream().map(rentPriceMapper::asDto)
-                .sorted(Comparator.comparing(rentPriceDto -> DayOfWeek.valueOf(rentPriceDto.dayOfWeek()))).collect(Collectors.toList());
+        final var car = carService.getCar(carExternalId);
+        return rentPriceRepository.getRentPricesByCar(car).stream()
+                .sorted(Comparator.comparing(RentPrice::getDayOfWeek))
+                .map(rentPriceMapper::asDto)
+                .collect(Collectors.toList());
     }
 
     public String updateRentPrice(String rentPriceExternalId, RentPriceDto rentPriceDto) {
-        final var rentPrice = rentPriceRepository.findByExternalId(rentPriceExternalId)
-                .orElseThrow(() -> new NotFoundException(String.format("The rent price with id %s not found!", rentPriceExternalId)));
+        final RentPrice rentPrice = getRentPrice(rentPriceExternalId);
         rentPrice.setPrice(rentPriceDto.price());
         return rentPriceRepository.save(rentPrice).getExternalId();
+    }
+
+    private RentPrice getRentPrice(String rentPriceExternalId) {
+        return rentPriceRepository.findByExternalId(rentPriceExternalId)
+                .orElseThrow(() -> new NotFoundException(String.format("The rent price with id %s not found!", rentPriceExternalId)));
     }
 }

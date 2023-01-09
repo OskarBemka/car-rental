@@ -80,6 +80,14 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <!-- Cannot use the 2.0+ versions due to issue https://github.com/hibernate/hibernate-orm/pull/4524 - -->
+            <version>1.4.200</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

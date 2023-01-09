@@ -3,6 +3,7 @@ package com.bemka.carrental.car.api.mapper;
 import com.bemka.carrental.car.api.dto.CarDto;
 import com.bemka.carrental.car.model.Car;
 import com.bemka.carrental.car.model.CarBrand;
+import com.bemka.carrental.common.exception.BadRequestException;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -26,7 +27,7 @@ public abstract class CarMapper {
     @Named("toCarBrand")
     protected CarBrand toCarBrand(String brand) {
         if (brand == null) {
-            return null;
+            throw new BadRequestException("The car brand can not be null!");
         }
         return CarBrand.valueOf(brand.toUpperCase(Locale.ROOT));
     }

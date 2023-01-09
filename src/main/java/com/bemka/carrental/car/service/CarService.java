@@ -30,10 +30,14 @@ public class CarService {
     }
 
     public String updateCar(CarDto carDto, String externalId) {
-        final var car = carRepository.findByExternalId(externalId)
-                .orElseThrow(() -> new NotFoundException(String.format("The car with id %s not found!", externalId)));
+        final var car = getCar(externalId);
         car.setBrand(CarBrand.valueOf(carDto.brand().toUpperCase(Locale.ROOT)));
         car.setModel(carDto.model());
         return carRepository.save(car).getExternalId();
+    }
+
+    public Car getCar(String externalId) {
+        return carRepository.findByExternalId(externalId)
+                .orElseThrow(() -> new NotFoundException(String.format("The car with id %s not found!", externalId)));
     }
 }

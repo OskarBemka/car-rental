@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -45,6 +44,7 @@ class CarServiceTest {
         //assert
         assertThat(result).isEqualTo("5a434d24-1ae1-4493-bc3b-897df118790d");
     }
+
     @Test
     public void shouldReturnCars() {
         //arrange

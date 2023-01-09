@@ -10,7 +10,6 @@ public class CarBrandValidator implements ConstraintValidator<CarBrandType, Stri
 
     @Override
     public void initialize(CarBrandType constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override

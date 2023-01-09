@@ -1,0 +1,8 @@
+{
+  "status": 400,
+  "error": "Bad Request",
+  "messages": [
+    "There is no car brand like this!",
+    "Car model have to contain non-whitespace characters!"
+  ]
+}
