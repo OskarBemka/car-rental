@@ -80,7 +80,7 @@ class CarControllerIT extends ControllerBaseIT {
                 .andReturn();
 
         //assert
-        String responseBody = result.getResponse().getContentAsString();
+        final var responseBody = result.getResponse().getContentAsString();
         JSONAssert.assertEquals(expectedJson, responseBody, false);
     }
 

@@ -1,5 +1,6 @@
 package com.bemka.carrental.rent_price.api.mapper;
 
+import com.bemka.carrental.common.exception.BadRequestException;
 import com.bemka.carrental.rent_price.api.dto.RentPriceDto;
 import com.bemka.carrental.rent_price.model.RentPrice;
 import org.mapstruct.Mapper;
@@ -23,9 +24,9 @@ public abstract class RentPriceMapper {
     public abstract RentPrice asEntity(RentPriceDto rentPriceDto);
 
     @Named("toDayOfWeek")
-    public DayOfWeek toDayOfWeek(String dayOfWeek) {
+    protected DayOfWeek toDayOfWeek(String dayOfWeek) {
         if (dayOfWeek == null) {
-            return null;
+            throw new BadRequestException("The day of week can not be null!");
         }
         return DayOfWeek.valueOf(dayOfWeek.toUpperCase(Locale.ROOT));
     }

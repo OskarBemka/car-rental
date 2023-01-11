@@ -1,0 +1,30 @@
+[
+  {
+    "dayOfWeek": "MONDAY",
+    "price": 10.0
+  },
+  {
+    "dayOfWeek": "TUESDAY",
+    "price": 10.0
+  },
+  {
+    "dayOfWeek": "WEDNESDAY",
+    "price": 10.0
+  },
+  {
+    "dayOfWeek": "THURSDAY",
+    "price": 15.0
+  },
+  {
+    "dayOfWeek": "FRIDAY",
+    "price": 20.0
+  },
+  {
+    "dayOfWeek": "SATURDAY",
+    "price": 25.0
+  },
+  {
+    "dayOfWeek": "SUNDAY",
+    "price": 30.0
+  }
+]
