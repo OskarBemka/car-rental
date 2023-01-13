@@ -27,7 +27,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
     @Test
     public void shouldReturn201_when_rentPriceAdded() throws Exception {
         //arrange
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_post_rent_price_request201.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_post_rent_price_request201.json");
         final var carExternalId = "c50614de-9b12-4414-8267-9515b6cf4222";
 
         //act
@@ -55,8 +55,8 @@ class RentPriceControllerIT extends ControllerBaseIT {
     @Test
     public void shouldReturn400_when_rentPriceDtoNotValid() throws Exception {
         //arrange
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_post_rent_price_request400.json");
-        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_get_rent_price_not_valid_response400.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_post_rent_price_request400.json");
+        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_get_rent_price_not_valid_response400.json");
         final var carExternalId = "c50614de-9b12-4414-8267-9515b6cf4111";
 
         //act
@@ -75,7 +75,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
     public void shouldGetRentPricesForCar_when_carExternalIdProvided() throws Exception {
         //arrange
         final var carExternalId = "c50614de-9b12-4414-8267-9515b6cf4111";
-        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_get_rent_prices_for_car_response200.json");
+        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_get_rent_prices_for_car_response200.json");
 
         //act
         final var result = mockMvc.perform(get("/api/car-rental/rent-price/{carExternalId}", carExternalId)
@@ -92,7 +92,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
     public void shouldReturn200WithExternalId_when_rentPriceToUpdateIsValid() throws Exception {
         //arrange
         final var externalId = "0c098634-c3da-4f97-9eea-eda6a4monday";
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_put_rent_price_request200.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_put_rent_price_request200.json");
 
         //act
         final var result = mockMvc.perform(put("/api/car-rental/rent-price/{externalId}", externalId)
@@ -120,8 +120,8 @@ class RentPriceControllerIT extends ControllerBaseIT {
     public void shouldReturn400_when_rentPriceToUpdateIsNotValid() throws Exception {
         //arrange
         final var externalId = "0c098634-c3da-4f97-9eea-eda6a4monday";
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_put_rent_price_request400.json");
-        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_get_rent_price_not_valid_response400.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_put_rent_price_request400.json");
+        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_get_rent_price_not_valid_response400.json");
 
         //act
         final var result = mockMvc.perform(put("/api/car-rental/rent-price/{externalId}", externalId)
@@ -139,8 +139,8 @@ class RentPriceControllerIT extends ControllerBaseIT {
     public void shouldReturn404_when_rentPriceForUpdateNotFound() throws Exception {
         //arrange
         final var externalId = "wrongId";
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_put_rent_price_request404.json");
-        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_get_rent_price_not_found_response404.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_put_rent_price_request404.json");
+        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_price/api/api_get_rent_price_not_found_response404.json");
 
         //act
         final var result = mockMvc.perform(put("/api/car-rental/rent-price/{externalId}", externalId)

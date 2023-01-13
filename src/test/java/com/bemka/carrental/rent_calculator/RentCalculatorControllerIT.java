@@ -22,7 +22,7 @@ class RentCalculatorControllerIT extends ControllerBaseIT {
     public void shouldReturn200_when_calculateRentCost() throws Exception {
         //arrange
         final var carExternalId = "c50614de-9b12-4414-8267-9515b6cf4111";
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_post_rent_period_request200.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_cost/api/api_post_rent_period_request200.json");
 
         //act
         final var result = mockMvc.perform(post("/api/car-rental/rent-calculator/{carExternalId}", carExternalId)
@@ -40,8 +40,8 @@ class RentCalculatorControllerIT extends ControllerBaseIT {
     public void shouldReturn400_when_rentPeriodIsNotValid() throws Exception {
         //arrange
         final var carExternalId = "c50614de-9b12-4414-8267-9515b6cf4111";
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_post_rent_period_not_valid_request400.json");
-        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_get_rent_period_not_valid_response400.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_cost/api/api_post_rent_period_not_valid_request400.json");
+        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_cost/api/api_get_rent_period_not_valid_response400.json");
 
 
         //act
@@ -60,8 +60,8 @@ class RentCalculatorControllerIT extends ControllerBaseIT {
     public void shouldReturn400_when_rentPeriodStartDateIsAfterEndDate() throws Exception {
         //arrange
         final var carExternalId = "c50614de-9b12-4414-8267-9515b6cf4111";
-        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_post_rent_period_start_date_after_end_date_request400.json");
-        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "car/api/api_get_rent_period_start_date_after_end_date_response400.json");
+        final var requestBody = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_cost/api/api_post_rent_period_start_date_after_end_date_request400.json");
+        final var expectedJson = FileHelper.getFileContentAsString(RESOURCE_PATH + "rent_cost/api/api_get_rent_period_start_date_after_end_date_response400.json");
 
 
         //act
