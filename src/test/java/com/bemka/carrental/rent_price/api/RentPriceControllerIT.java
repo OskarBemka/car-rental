@@ -6,6 +6,7 @@ import com.bemka.carrental.rent_price.model.dao.RentPriceRepository;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
@@ -24,6 +25,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
     @Autowired
     private RentPriceRepository rentPriceRepository;
 
+    @WithMockUser("USER")
     @Test
     public void shouldReturn201_when_rentPriceAdded() throws Exception {
         //arrange
@@ -52,6 +54,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
         });
     }
 
+    @WithMockUser("USER")
     @Test
     public void shouldReturn400_when_rentPriceDtoNotValid() throws Exception {
         //arrange
@@ -88,6 +91,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
         JSONAssert.assertEquals(expectedJson, responseBody, false);
     }
 
+    @WithMockUser("USER")
     @Test
     public void shouldReturn200WithExternalId_when_rentPriceToUpdateIsValid() throws Exception {
         //arrange
@@ -116,6 +120,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
         });
     }
 
+    @WithMockUser("USER")
     @Test
     public void shouldReturn400_when_rentPriceToUpdateIsNotValid() throws Exception {
         //arrange
@@ -135,6 +140,7 @@ class RentPriceControllerIT extends ControllerBaseIT {
         JSONAssert.assertEquals(expectedJson, responseBody, false);
     }
 
+    @WithMockUser("USER")
     @Test
     public void shouldReturn404_when_rentPriceForUpdateNotFound() throws Exception {
         //arrange

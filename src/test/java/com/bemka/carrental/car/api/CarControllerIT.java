@@ -7,6 +7,7 @@ import com.bemka.carrental.helper.FileHelper;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.OffsetDateTime;
@@ -23,6 +24,7 @@ class CarControllerIT extends ControllerBaseIT {
     @Autowired
     private CarRepository carRepository;
 
+    @WithMockUser(roles = "USER")
     @Test
     public void shouldReturn201WithExternalId_when_carAdded() throws Exception {
         //arrange
@@ -51,6 +53,7 @@ class CarControllerIT extends ControllerBaseIT {
         });
     }
 
+    @WithMockUser(roles = "USER")
     @Test
     public void shouldReturn400_when_carNotValid() throws Exception {
         //arrange
@@ -84,6 +87,7 @@ class CarControllerIT extends ControllerBaseIT {
         JSONAssert.assertEquals(expectedJson, responseBody, false);
     }
 
+    @WithMockUser(roles = "USER")
     @Test
     public void shouldReturn200WithExternalId_when_carToUpdateIsValid() throws Exception {
         //arrange
@@ -113,6 +117,7 @@ class CarControllerIT extends ControllerBaseIT {
         });
     }
 
+    @WithMockUser(roles = "USER")
     @Test
     public void shouldReturn400_when_carToUpdateIsNotValid() throws Exception {
         //arrange
@@ -132,6 +137,7 @@ class CarControllerIT extends ControllerBaseIT {
         JSONAssert.assertEquals(expectedJson, responseBody, false);
     }
 
+    @WithMockUser(roles = "USER")
     @Test
     public void shouldReturn404_when_carForUpdateNotFound() throws Exception {
         //arrange

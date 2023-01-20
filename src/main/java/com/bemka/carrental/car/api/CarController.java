@@ -2,6 +2,7 @@ package com.bemka.carrental.car.api;
 
 import com.bemka.carrental.car.api.dto.CarDto;
 import com.bemka.carrental.car.service.CarService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ public class CarController {
 
     private final CarService carService;
 
+    @SecurityRequirement(name = "bearerAuth")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public String addCar(@RequestBody @Valid CarDto carDto) {
@@ -27,6 +29,7 @@ public class CarController {
         return carService.getCars();
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PutMapping("{externalId}")
     public String updateCar(@RequestBody @Valid CarDto carDto, @PathVariable String externalId) {
         return carService.updateCar(carDto, externalId);
