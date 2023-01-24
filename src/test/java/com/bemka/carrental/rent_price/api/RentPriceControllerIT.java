@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
@@ -49,8 +50,8 @@ class RentPriceControllerIT extends ControllerBaseIT {
             assertThat(rentPrice.getDayOfWeek()).isEqualTo(DayOfWeek.MONDAY);
             assertThat(rentPrice.getExternalId()).isEqualTo(responseBody);
             assertThat(rentPrice.getId()).isNotNull();
-            assertThat(rentPrice.getCreatedAt()).isBeforeOrEqualTo(OffsetDateTime.now());
-            assertThat(rentPrice.getUpdatedAt()).isBeforeOrEqualTo(OffsetDateTime.now());
+            assertThat(rentPrice.getCreatedAt().plusNanos(500).truncatedTo(ChronoUnit.MICROS)).isBeforeOrEqualTo(OffsetDateTime.now());
+            assertThat(rentPrice.getUpdatedAt().plusNanos(500).truncatedTo(ChronoUnit.MICROS)).isBeforeOrEqualTo(OffsetDateTime.now());
         });
     }
 

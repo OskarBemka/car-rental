@@ -11,6 +11,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
@@ -48,8 +49,8 @@ class CarControllerIT extends ControllerBaseIT {
             assertThat(car.getExternalId()).isEqualTo(responseBody);
             assertThat(car.getId()).isNotNull();
             assertThat(car.getIsActive()).isTrue();
-            assertThat(car.getCreatedAt()).isBeforeOrEqualTo(OffsetDateTime.now());
-            assertThat(car.getUpdatedAt()).isBeforeOrEqualTo(OffsetDateTime.now());
+            assertThat(car.getCreatedAt().plusNanos(500).truncatedTo(ChronoUnit.MICROS)).isBeforeOrEqualTo(OffsetDateTime.now());
+            assertThat(car.getUpdatedAt().plusNanos(500).truncatedTo(ChronoUnit.MICROS)).isBeforeOrEqualTo(OffsetDateTime.now());
         });
     }
 
