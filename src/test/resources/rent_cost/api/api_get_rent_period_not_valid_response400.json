@@ -1,0 +1,8 @@
+{
+  "status": 400,
+  "error": "Bad Request",
+  "messages": [
+    "The date pattern for start date is YYYY-MM-DD",
+    "The date pattern for end date is YYYY-MM-DD"
+  ]
+}

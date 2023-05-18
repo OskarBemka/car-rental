@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  car-rental-db:
+    image: mysql:8.0.26
+    container_name: car-rental-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: car_rental_db
+    volumes:
+        - data-volume:/var/lib/mysql
+    ports:
+      - "3301:3306"
+    networks:
+      - backend
+
+  car-rental-api:
+    image: car-rental-api
+    container_name: car-rental-api
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8080"
+    depends_on:
+      - car-rental-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://car-rental-db:3306/car_rental_db?createDatabaseIfNotExist=true&serverTimezone=UTC&useLegacyDatetimeCode=false
+
+    networks:
+      - backend
+volumes:
+  data-volume:
+
+networks:
+  backend:

@@ -1,0 +1,8 @@
+{
+  "status": 400,
+  "error": "Bad Request",
+  "messages": [
+    "There is no day of week like this!",
+    "The price must be greater than 0.00!"
+  ]
+}

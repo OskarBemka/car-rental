@@ -1,0 +1,7 @@
+{
+  "status": 404,
+  "error": "Not Found",
+  "messages": [
+    "The car with id wrong external id not found!"
+  ]
+}

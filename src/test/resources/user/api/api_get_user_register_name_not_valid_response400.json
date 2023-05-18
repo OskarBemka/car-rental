@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "error": "Bad Request",
+  "messages": [
+    "User with email admin@admin.com already exist!"
+  ]
+}
